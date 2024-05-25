@@ -16,10 +16,13 @@ export const tableSlice = createSlice({
         state.value.splice(index, 1);
       }
     },
+    updatePlayers: (state, action) => {
+      state.value = action.payload;
+    }
   },
 });
 
 // Action creators
-export const { addPlayer, removePlayer } = tableSlice.actions;
+export const { addPlayer, removePlayer, updatePlayers } = tableSlice.actions;
 
 export default tableSlice.reducer;
