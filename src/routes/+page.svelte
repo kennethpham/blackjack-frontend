@@ -36,26 +36,36 @@
   {#if failed}
     <p>Failed to login with Username: {lastUsername}</p>
   {/if}
-  <form
-    on:submit={(event) => {
-      event.preventDefault();
-      setUser();
-    }}
-  >
-    <label for="name">Username:</label><br />
-    <input type="text" name="name" bind:value={username} />
-    <input
-      type="button"
-      value="Login"
-      on:click={() => {
+  <div class="form_div">
+    <form
+      on:submit={(event) => {
+        event.preventDefault();
         setUser();
       }}
-    />
-  </form>
+    >
+      <label for="name">Username:</label><br/>
+      <input type="text" name="name" bind:value={username} />
+      <input
+        type="button"
+        value="Login"
+        on:click={() => {
+          setUser();
+        }}
+      />
+    </form>
+  </div>
+  <button
+    on:click={() => {
+      goto('/Room');
+    }}>{'Continue as Guest'}</button
+  >
 </div>
 
 <style>
   .container {
     text-align: center;
+  }
+  .form_div {
+    padding: 5px;
   }
 </style>

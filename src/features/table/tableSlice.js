@@ -1,28 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+/**
+ *  @typedef {Object} TableStore
+ *  @property {String} uuid
+ *  @property {String[]} uuidList
+ */
+
 export const tableSlice = createSlice({
   name: 'table',
+  /** @type {TableStore} */
   initialState: {
+    /** @type {String} **/
+    uuid: '',
     /** @type {String[]} **/
-    value: [],
+    uuidList: [],
   },
   reducers: {
     addPlayer: (state, action) => {
-      state.value.push(action.payload);
+      state.uuidList.push(action.payload);
+    },
+    addUuid: (state, action) => {
+      state.uuid = action.payload;
+      console.log('updated adduuid:', action.payload);
     },
     removePlayer: (state, action) => {
-      const index = state.value.indexOf(action.payload);
+      const index = state.uuidList.indexOf(action.payload);
       if (index > -1) {
-        state.value.splice(index, 1);
+        state.uuidList.splice(index, 1);
       }
     },
     updatePlayers: (state, action) => {
-      state.value = action.payload;
-    }
+      state.uuidList = action.payload;
+    },
   },
 });
 
 // Action creators
-export const { addPlayer, removePlayer, updatePlayers } = tableSlice.actions;
+export const { addPlayer, addUuid, removePlayer, updatePlayers } =
+  tableSlice.actions;
 
 export default tableSlice.reducer;
