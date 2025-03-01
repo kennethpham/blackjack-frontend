@@ -1,10 +1,9 @@
 <script>
-  import { currUser } from '$lib/../stores';
-  import House from '$lib/components/House.svelte';
   import { onMount } from 'svelte';
 
   import store from '$lib/../store';
   import { addUuid, updatePlayers } from '../../features/table/tableSlice';
+  import { goto } from '$app/navigation';
 
   /**
    * @typedef { import('$lib/backend/models').WebSocketMsg } WebsocketMsg
@@ -56,12 +55,17 @@
       websocket?.close();
     };
   });
+
+  const startGame = () => {
+    goto('/Game');
+  };
 </script>
 
 <div>
-  <h1>Blackjack Table</h1>
+  <h1>Blackjack Waiting Room</h1>
   <p>Users connected: [{currStore.uuidList}]</p>
   <p>User: {currStore.uuid}</p>
+  <button on:click={startGame}>{'Start Game'}</button>
 </div>
 
 <style>
