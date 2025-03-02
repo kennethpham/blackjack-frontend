@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation';
 
   import { currUser } from '$lib/../stores';
-  import { getUser } from '$lib/backend/backend';
+  import { getUser, addUser } from '$lib/backend/backend';
 
   let username = '';
   let lastUsername = '';
@@ -25,6 +25,23 @@
       console.error(error);
     }
   };
+
+  const createUser = async () => {
+    try {
+      const user = await addUser(username);
+      if (user) {
+        currUser.set(user);
+        goto('/User');
+      } else {
+        lastUsername = username;
+        failed = true;
+      }
+    } catch (error) {
+      lastUsername = username;
+      failed = true;
+      console.error(error);
+    }
+  };
 </script>
 
 <div class="container">
@@ -34,7 +51,7 @@
     </h3>
   </header>
   {#if failed}
-    <p>Failed to login with Username: {lastUsername}</p>
+    <p>Failed with Username: {lastUsername}</p>
   {/if}
   <div class="form_div">
     <form
@@ -43,7 +60,7 @@
         setUser();
       }}
     >
-      <label for="name">Username:</label><br/>
+      <label for="name">Username:</label><br />
       <input type="text" name="name" bind:value={username} />
       <input
         type="button"
@@ -56,8 +73,8 @@
   </div>
   <button
     on:click={() => {
-      goto('/Room');
-    }}>{'Continue as Guest'}</button
+      createUser();
+    }}>{'Add User'}</button
   >
 </div>
 
