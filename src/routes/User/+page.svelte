@@ -1,24 +1,26 @@
 <script>
+  import { initialUser } from '../../store';
   import { goto } from '$app/navigation';
-
-  import { currUser, initialUser } from '$lib/../stores';
+  import { currUser } from '../../store';
 </script>
 
-{#if $currUser !== initialUser}
-  <div>
-    <h1>Uuid: {$currUser._id}</h1>
+<div>
+  {#if $currUser != initialUser}
     <h1>User: {$currUser.name}</h1>
     <h1>Wins: {$currUser.wins}</h1>
     <button
       on:click={() => {
         goto('/Room');
-      }}>Start Game</button
+      }}>{'Join Lobby'}</button
     >
-  </div>
-{:else}
-  <h1>Error no user set</h1>
-  <p>Please Login</p>
-{/if}
+  {:else}
+    <h1>Error no user set</h1>
+    <p>Please Login</p>
+    <button on:click={() => goto('/')}>
+      {'Login'}
+    </button>
+  {/if}
+</div>
 
 <style>
   :global(body) {

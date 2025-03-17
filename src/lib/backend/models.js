@@ -10,6 +10,7 @@
  * @property {string} msg_type
  * @property {string} msg_data_str
  * @property {string[]} msg_data_arr
+ * @property {string[][]} msg_data_keys
  */
 
 module.exports = {}

@@ -1,9 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
-import tableReducer from './features/table/tableSlice';
+import { writable } from 'svelte/store';
 
-/** @type {import('@reduxjs/toolkit').Store} */
-export default configureStore({
-  reducer: {
-    table: tableReducer,
-  },
-});
+/**
+ * @typedef { import('$lib/backend/models').UserData } UserData
+ * @typedef { import('$lib/components/Hand').Hand } Hand
+ */
+
+/** @type {UserData} */
+export const initialUser = { _id: 'initial_id', name: '', wins: -1 };
+
+/** @type {Array.<Hand>} */
+export const initialHands = [];
+
+export const currUser = writable(initialUser);
+export const currLobby = writable([initialUser]);
+export const currHands = writable(initialHands);
+export const tableId = writable('');
