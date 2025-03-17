@@ -7,7 +7,7 @@
  *  @return {Promise<UserData | undefined>} result_json
  */
 const getUser = async (user) => {
-  const response = await fetch(`http://localhost:3000/user/${user}`);
+  const response = await fetch(`http://localhost:8080/user/${user}`);
   if (!response.ok) {
     throw `Error getting user: ${user}`;
   }
@@ -20,7 +20,7 @@ const getUser = async (user) => {
  *  @return {Promise<UserData | undefined>} result_json
  */
 const addUser = async (user) => {
-  const response = await fetch('http://localhost:3000/user/create', {
+  const response = await fetch('http://localhost:8080/user/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

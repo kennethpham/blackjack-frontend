@@ -1,7 +1,6 @@
 <script>
   import { goto } from '$app/navigation';
-
-  import { currUser } from '$lib/../stores';
+  import { currUser } from '$lib/../store';
   import { getUser, addUser } from '$lib/backend/backend';
 
   let username = '';
@@ -9,7 +8,7 @@
 
   let failed = false;
 
-  const setUser = async () => {
+  const setCurrUser = async () => {
     try {
       const user = await getUser(username);
       if (user) {
@@ -57,7 +56,7 @@
     <form
       on:submit={(event) => {
         event.preventDefault();
-        setUser();
+        setCurrUser();
       }}
     >
       <label for="name">Username:</label><br />
@@ -66,7 +65,7 @@
         type="button"
         value="Login"
         on:click={() => {
-          setUser();
+          setCurrUser();
         }}
       />
     </form>
