@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
-  import { currUser, initialUser } from '$lib/../store';
+  import { currUser } from '$lib/../store';
 
   /**
    * @typedef { import('$lib/backend/models').WebSocketMsg } WebsocketMsg
@@ -13,7 +13,7 @@
   let table = [];
 
   onMount(() => {
-    if ($currUser != initialUser) {
+    if ($currUser.name) {
       const ws = new WebSocket(`ws://localhost:8080/ws/${$currUser._id}`);
 
       ws.addEventListener('open', (event) => {
@@ -52,19 +52,20 @@
   };
 </script>
 
-<div>
-  {#if $currUser != initialUser}
-    <h1>Blackjack Waiting Room</h1>
+<div class="flex-col text-white p-6">
+  <div class="bg-gray-800 p-3 rounded-xl">
+    <div class="flex justify-center items-center pb-10">
+      <h1 class="font-bold text-2xl">Blackjack Waiting Room</h1>
+    </div>
     <p>Users connected: [{table.map(([username, _]) => username)}]</p>
     <p>User: {$currUser.name}</p>
-    <button on:click={startGame}>{'Start Game'}</button>
-  {:else}
-    <h1>Error no user set</h1>
-    <p>Please Login</p>
-    <button on:click={() => goto('/')}>
-      {'Login'}
-    </button>
-  {/if}
+    <div class="flex justify-center items-center">
+      <button
+        class="bg-blue-600 px-3 py-2 rounded-full hover:bg-blue-700 focus:border-gray-900 border-blue-600 border"
+        on:click={startGame}>{'Start Game'}</button
+      >
+    </div>
+  </div>
 </div>
 
 <style>
