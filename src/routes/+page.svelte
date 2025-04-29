@@ -38,7 +38,7 @@
     class="flex flex-col items-center justify-center px-6 py-8 mx-auto sm:h-screen md:h-screen lg:py-0"
   >
     <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+      class="w-full bg-white rounded-xl shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1
@@ -46,6 +46,11 @@
         >
           Login to your account
         </h1>
+        {#if failed}
+          <p class="text-sm text-red-600">
+            {'No account with that username...'}
+          </p>
+        {/if}
         <form
           class="space-y-4 md:space-y-6"
           on:submit={(e) => e.preventDefault()}
