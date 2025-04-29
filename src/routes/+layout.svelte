@@ -1,9 +1,9 @@
 <script>
   import '../app.css';
-  import { currUser, initialUser } from '../store';
+  import { currUser, defaultUser } from '../store';
 
   const logout = () => {
-    currUser.set(initialUser);
+    currUser.set(defaultUser);
     window.location.assign('/');
   };
 </script>

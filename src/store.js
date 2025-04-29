@@ -7,7 +7,7 @@ import { writable } from 'svelte/store';
  */
 
 /** @type {UserData} */
-const defaultUser = { _id: 'initial_id', name: '', wins: -1 };
+export const defaultUser = { _id: 'initial_id', name: '', wins: -1 };
 /** @type {UserData} */
 export const initialUser = browser ? JSON.parse(window.localStorage.getItem('user')) ?? defaultUser : defaultUser;
 
