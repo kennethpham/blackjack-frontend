@@ -59,6 +59,12 @@
     </div>
     <p>Users connected: [{table.map(([username, _]) => username)}]</p>
     <p>User: {$currUser.name}</p>
+    <div class="pt-5">
+      <button
+        class="bg-red-800 rounded-full px-3 py-2 cursor-pointer hover:bg-red-900"
+        on:click={() => goto('/User')}>{'Leave Room'}</button
+      >
+    </div>
     <div class="flex justify-center items-center">
       <button
         class="bg-blue-600 px-3 py-2 rounded-full hover:bg-blue-700 focus:border-gray-900 border-blue-600 border"
